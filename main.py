@@ -73,25 +73,58 @@ def sumar_kilos(matriz: list) -> list:
         
 
 # 3. Nombre del cereal que almaceno menos kilos en cada depósito.
-def almacenar_menos_kilos(nombre_granos:list, matriz:list):
-    nombre_granos = crear_matriz(1,1,"Maiz, Trigo, Cebada, Centeno ")
-    nombre_menor_grano = sumar_kilos(matriz)
+def almacenar_menos_kilos(matriz:list):
+    nombre_granos = crear_matriz(1,4,"")
+    nombre_granos[0][0] = "Maiz"
+    nombre_granos[0][1] = "Centeno"
+    nombre_granos[0][2] = "Cebada"
+    nombre_granos[0][3] = "gfvgvb"
+    
     nombre_menor_ceral_por_deposito = []
+    cereales_menor_valor = []
   
-    for j in range(len(nombre_granos[0])):#columnas
-       
-        for i in range(len(matriz[0])-1):#filas
-            if matriz < nombre_menor_grano:
-                nombre_menor_ceral_por_deposito += matriz[i][j]
-              
-                   
-       
+    for i in range(len(matriz)):#filas
+        cereal_menor_valor = 90000
+        menor_valor_deposito = matriz[i][0]
+        for j in range(len(nombre_granos[0])):#columnas
+            if matriz[i][j] < menor_valor_deposito:
+                menor_valor_deposito = matriz[i][j]
+                cereal_menor_valor = nombre_granos[0][j]
+
+        nombre_menor_ceral_por_deposito  = nombre_menor_ceral_por_deposito + [menor_valor_deposito]
+        cereales_menor_valor =   cereales_menor_valor +[cereal_menor_valor]
+
+    for i in range(len(cereales_menor_valor)):
+        print(cereales_menor_valor[i])          
     return nombre_menor_ceral_por_deposito
         
                 
                
-                
-        
+
+# 4. Máxima cantidad de kilos almacenados de cada cereal.              
+def almacenar_mayor_kilos(matriz:list):
+    nombre_granos = crear_matriz(1,4,"")
+    nombre_granos[0][0] = "Maiz"
+    nombre_granos[0][1] = "Centeno"
+    nombre_granos[0][2] = "Cebada"
+    nombre_granos[0][3] = "gfvgvb"
+    
+    nombre_menor_ceral_por_deposito = []
+    cereales_menor_valor = []
+    for i in range(len(matriz)):#filas
+        cereal_menor_valor = 0
+        menor_valor_deposito = matriz[i][0]
+        for j in range(len(nombre_granos[0])):#columnas
+            if matriz[i][j] > menor_valor_deposito:
+                menor_valor_deposito = matriz[i][j]
+                cereal_menor_valor = nombre_granos[0][j]
+
+        nombre_menor_ceral_por_deposito  = nombre_menor_ceral_por_deposito + [menor_valor_deposito]
+        cereales_menor_valor = cereales_menor_valor + [cereal_menor_valor]
+
+    for i in range(len(cereales_menor_valor)):
+        print(cereales_menor_valor[i])          
+    return nombre_menor_ceral_por_deposito    
     
 
 matriz = crear_matriz(2,4,None)
@@ -99,14 +132,11 @@ cargar_matriz(matriz)
 suma_fila = sumar_kilos(matriz)
 print(f"Suma de la filas : {suma_fila}")
 
-nombre_granos = almacenar_menos_kilos("", matriz)
-print(f"El nombre del ceral con menos kilos es: {nombre_granos}")
-# menor_kilo = almacenar_menos_kilos(nombre_granos)
-# print(menor_kilo)
 
-
-
-
+menor_kilo = almacenar_menos_kilos(matriz)
+print(menor_kilo)
+mayor_kilo = almacenar_mayor_kilos(matriz)
+print(mayor_kilo)
 mostrar_matriz(matriz)  
 
 
